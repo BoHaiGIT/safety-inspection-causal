@@ -1,0 +1,47 @@
+========================================================================================
+WITHIN-FIRM HETEROGENEITY & DESCRIPTIVES
+========================================================================================
+
+[DESCRIPTIVES]
+  establishments: 59,621
+  inspection transitions: 142,354
+  transitions per establishment: mean=2.39 median=1 max=563
+  inspections per establishment (n_insp): mean=3.39
+  treated share (inspection k programmed): 70.6%
+  serious violations at k : mean=1.100 sd=1.954 share zero=56.8%
+  serious violations at k+1: mean=0.919 sd=1.732 share zero=61.4%
+  gap between inspections (years): mean=1.20 median=0.60
+  calendar years: 2010-2019
+  firms with both inspection types: 10,986
+  firms observed only programmed: 45,912
+
+  raw pattern (transition level):
+    unprogrammed   n=  41805  pre=1.063  post=0.903  delta=-0.160
+    programmed     n= 100549  pre=1.116  post=0.925  delta=-0.190
+
+[HETEROGENEITY — firm FE, outcome = serious violations at next inspection]
+  all transitions                    coef=-0.0318 se=0.0140 CI[-0.0591,-0.0044] rel=  -3.5% n= 142354 firms= 59621  SIG
+  small firms (<= median emp)        coef=-0.0228 se=0.0235 CI[-0.0689,+0.0232] rel=  -2.3% n=  79354 firms= 40801  n.s.
+  large firms (> median emp)         coef=-0.0511 se=0.0201 CI[-0.0906,-0.0117] rel=  -6.1% n=  63000 firms= 31633  SIG
+
+  by baseline violation load:
+  clean record (pre = 0)             coef=-0.0249 se=0.0126 CI[-0.0496,-0.0002] rel=  -5.1% n=  80856 firms= 32737  SIG
+  violations found (pre > 0)         coef=+0.0482 se=0.0363 CI[-0.0229,+0.1192] rel=  +3.3% n=  61498 firms= 39355  n.s.
+
+  by NAICS 2-digit (largest groups):
+  NAICS 23                           coef=-0.0340 se=0.0139 CI[-0.0613,-0.0068] rel=  -3.7% n= 141085 firms= 59273  SIG
+  NAICS 56                           coef=+0.4031 se=0.2810 CI[-0.1477,+0.9540] rel= +50.4% n=   1246 firms=   500  n.s.
+  NAICS 33                           coef=+0.0000 se=0.0000 CI[+0.0000,+0.0000] rel=  +0.0% n=     10 firms=    10  n.s.
+  NAICS 11                           coef=+0.0000 se=0.0000 CI[+0.0000,+0.0000] rel=  +0.0% n=      5 firms=     5  n.s.
+
+  by gap length:
+  gap <= 1 year                      coef=+0.0192 se=0.0168 CI[-0.0137,+0.0522] rel=  +2.3% n=  89842 firms= 39237  n.s.
+  gap > 1 year                       coef=-0.0612 se=0.0305 CI[-0.1211,-0.0014] rel=  -5.8% n=  52512 firms= 37685  SIG
+
+  by union status:
+  non-union                          coef=-0.0267 se=0.0156 CI[-0.0572,+0.0039] rel=  -2.7% n= 120840 firms= 54088  n.s.
+  union                              coef=-0.0823 se=0.0349 CI[-0.1507,-0.0139] rel= -16.0% n=  21514 firms=  8723  SIG
+
+  by period:
+  2010-2014                          coef=-0.0279 se=0.0185 CI[-0.0643,+0.0085] rel=  -3.1% n=  98386 firms= 46078  n.s.
+  2015-2019                          coef=+0.0240 se=0.0251 CI[-0.0253,+0.0733] rel=  +2.5% n=  43968 firms= 22772  n.s.

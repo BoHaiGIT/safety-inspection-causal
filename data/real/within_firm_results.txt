@@ -1,0 +1,46 @@
+==================================================================================
+WITHIN-FIRM (FIXED-EFFECTS) IDENTIFICATION — real OSHA construction transitions
+==================================================================================
+transitions (firm x consecutive inspection pair): 142,354
+unique establishments: 59,621
+treated share (inspection k programmed): 70.6%
+pre mean=1.100  post mean=0.919
+
+[switcher subsample] firms with BOTH programmed and unprogrammed inspections: 10,986 (18.4% of firms)
+  transitions in switcher sample: 60,056   treated share 62.0%
+  firms with >=2 transitions: 10,986
+
+[1] Pooled OLS (no firm FE) — same sample, for comparison
+  pooled OLS, all transitions                          coef=+0.2076 se=0.0093 CI[+0.1894,+0.2258] rel= +22.6% n= 142354 G= 59621  SIG
+  pooled OLS, switcher sample                          coef=+0.0659 se=0.0128 CI[+0.0407,+0.0910] rel=  +9.4% n=  60056 G= 10986  SIG
+
+[2] Firm fixed effects (the decisive test)
+  firm FE, all transitions                             coef=-0.0318 se=0.0140 CI[-0.0591,-0.0044] rel=  -3.5% n= 142354 G= 59621  SIG
+  firm FE, switcher sample                             coef=-0.0335 se=0.0139 CI[-0.0607,-0.0062] rel=  -4.8% n=  60056 G= 10986  SIG
+  firm FE, switcher, + state dummies                   coef=-0.0335 se=0.0139 CI[-0.0607,-0.0062] rel=  -4.8% n=  60056 G= 10986  SIG
+
+[3] Firm FE, alternative outcomes (switcher sample)
+  firm FE: all violations (count)                      coef=-0.0579 se=0.0167 CI[-0.0906,-0.0253] rel=  -5.6% n=  60056 G= 10986  SIG
+  firm FE: total penalty $                             coef=+48.1834 se=86.1141 CI[-120.6003,+216.9671] rel=  +1.9% n=  60056 G= 10986  n.s.
+  firm FE: P(any serious violation)                    coef=-0.0163 se=0.0038 CI[-0.0238,-0.0088] rel=  -5.4% n=  60056 G= 10986  SIG
+
+[4] Placebo within firm: does a FUTURE programmed inspection predict the
+    outcome, conditional on firm FE? (should be null if FE absorbs heterogeneity)
+  firm FE, placebo = NEXT programmed                   coef=+0.0819 se=0.0190 CI[+0.0447,+0.1191] rel= +10.4% n=  82733 G= 26000  SIG
+  (placebo sample n=82,733)
+
+[5] E-value for the firm-FE estimate
+  firm FE switcher: RR=0.9524 -> E-value=1.279
+
+==================================================================================
+SUMMARY
+==================================================================================
+pooled OLS, all transitions                            +0.2076   +22.6%  SIG
+pooled OLS, switcher sample                            +0.0659    +9.4%  SIG
+firm FE, all transitions                               -0.0318    -3.5%  SIG
+firm FE, switcher sample                               -0.0335    -4.8%  SIG
+firm FE, switcher, + state dummies                     -0.0335    -4.8%  SIG
+firm FE: all violations (count)                        -0.0579    -5.6%  SIG
+firm FE: total penalty $                              +48.1834    +1.9%  n.s.
+firm FE: P(any serious violation)                      -0.0163    -5.4%  SIG
+firm FE, placebo = NEXT programmed                     +0.0819   +10.4%  SIG

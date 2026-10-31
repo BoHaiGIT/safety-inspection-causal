@@ -1,0 +1,101 @@
+{
+  "baseline_va": {
+    "tag": "V-A OLS (pre+covs+region/year/naics FE)",
+    "coef": -0.05240947603298148,
+    "lo": -0.08608487843263463,
+    "hi": -0.01895398111708599,
+    "rel": -4.498331004849274,
+    "n": 59617,
+    "sig": "SIG"
+  },
+  "baseline_did": {
+    "tag": "raw DiD (no adjustment)",
+    "coef": -0.00791720064510626,
+    "rel": NaN
+  },
+  "trim_va": {
+    "tag": "V-A OLS, trimmed sample",
+    "coef": -0.05349209414579578,
+    "lo": -0.09098131066147934,
+    "hi": -0.020898539890912712,
+    "rel": -4.926029833237482,
+    "n": 54757,
+    "sig": "SIG"
+  },
+  "trim_did": {
+    "tag": "raw DiD, trimmed",
+    "coef": -0.0626681055744025,
+    "rel": NaN
+  },
+  "stateyear_va": {
+    "tag": "V-A OLS + state x year FE (demeaned)",
+    "coef": -0.10133440070909536,
+    "lo": -0.13657539509761088,
+    "hi": -0.06743267572459485,
+    "rel": -8.697581259554756,
+    "n": 59617,
+    "sig": "SIG"
+  },
+  "psm_did": {
+    "tag": "PSM(1:1) then DiD",
+    "coef": -0.2331899317852304,
+    "rel": NaN,
+    "n": 84146
+  },
+  "psm_va": {
+    "tag": "PSM-matched V-A OLS",
+    "coef": -0.32685718184387225,
+    "lo": -0.3542789438191205,
+    "hi": -0.3007529526988761,
+    "rel": -25.805466662383047,
+    "n": 84146,
+    "sig": "SIG"
+  },
+  "placebo_treat": {
+    "tag": "placebo: next_programmed -> post violations",
+    "coef": 0.30436775118802667,
+    "lo": 0.274724583101902,
+    "hi": 0.3391562737976754,
+    "rel": 26.1240332031509,
+    "n": 59617,
+    "sig": "SIG"
+  },
+  "alt_post_penalty": {
+    "tag": "V-A OLS: total penalty $ at next inspection",
+    "coef": -834.9748570662322,
+    "lo": -1032.802429633955,
+    "hi": -669.7696564379556,
+    "rel": -32.08512699545324,
+    "n": 59617,
+    "sig": "SIG"
+  },
+  "alt_post_n_viol": {
+    "tag": "V-A OLS: all violations (count) at next inspection",
+    "coef": -0.10036156322661127,
+    "lo": -0.149050721413763,
+    "hi": -0.06317594340554054,
+    "rel": -6.326666788141188,
+    "n": 59617,
+    "sig": "SIG"
+  },
+  "ext_any": {
+    "tag": "V-A OLS: P(any serious violation) [LPM]",
+    "coef": 0.010002938369964342,
+    "lo": -0.0001239709999219787,
+    "hi": 0.0194500356101759,
+    "rel": 2.1019533213568935,
+    "n": 59617,
+    "sig": "n.s."
+  },
+  "aipw": {
+    "tag": "AIPW (cross-fitted GBM, doubly robust)",
+    "coef": -0.022699607763448315,
+    "lo": -0.06837227936274277,
+    "hi": 0.021482324829470177,
+    "rel": -1.948318455539956,
+    "n": 59617,
+    "sig": "n.s."
+  },
+  "e_value_baseline_va": 1.2691848266822658,
+  "e_value_aipw": 1.1622260429928482
+}

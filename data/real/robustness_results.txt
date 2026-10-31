@@ -1,0 +1,68 @@
+==================================================================================
+ROBUSTNESS BATTERY — real OSHA construction enforcement panel (2010-2019)
+==================================================================================
+N=59617  treated=70.6%  post mean=1.165  pre mean=1.534
+
+[BASELINE]
+  V-A OLS (pre+covs+region/year/naics FE)        coef=-0.0524 CI[-0.0861,-0.0190] rel=  -4.5% n= 59617  SIG
+  raw DiD (no covariate adjustment)              coef=-0.0079
+  naive (post_t - post_c)                        coef=+0.0436
+
+[R1] Common support — trim pre-injury rate to shared [0, P90]
+  trim at pre<=4: n=54757 (dropped 4860)
+  pre mean: treated=1.062  control=0.952
+  V-A OLS, trimmed sample                        coef=-0.0535 CI[-0.0910,-0.0209] rel=  -4.9% n= 54757  SIG
+  raw DiD, trimmed sample                        coef=-0.0627
+
+[R2] State x year fixed effects (FWL within-group demeaning)
+  V-A OLS + state x year FE (demeaned)           coef=-0.1013 CI[-0.1366,-0.0674] rel=  -8.7% n= 59617  SIG
+  state x year cells: 539
+
+[R3] Propensity-score matching 1:1 (GBM propensity, caliper 0.2 sd of logit)
+  propensity AUC proxy: mean ps treated=0.757 control=0.584
+  matched pairs=42073; discarded 8 of 42081 treated
+    SMD pre_injury_rate    +0.027
+    SMD log_employees      +0.006
+    SMD risk_score         +0.014
+    SMD complaints         +0.017
+    SMD unionized          +0.006
+  PSM-matched DiD                                coef=-0.2332 n=84146
+  PSM-matched V-A OLS                            coef=-0.3269 CI[-0.3543,-0.3008] rel= -25.8% n= 84146  SIG
+
+[R4] Placebo treatment — 'next inspection is programmed' as fake treatment
+     A future treatment must NOT predict the post outcome, conditional on pre + covariates.
+  placebo: next_programmed -> post violations    coef=+0.3044 CI[+0.2747,+0.3392] rel= +26.1% n= 59617  SIG
+
+[R5] Alternative outcomes (same treatment, same controls)
+  V-A OLS: total penalty $ at next inspection    coef=-834.9749 CI[-1032.8024,-669.7697] rel= -32.1% n= 59617  SIG
+  V-A OLS: all violations (count) at next inspection coef=-0.1004 CI[-0.1491,-0.0632] rel=  -6.3% n= 59617  SIG
+
+[R6] Extensive vs intensive margin
+  V-A OLS: P(any serious violation) [LPM]        coef=+0.0100 CI[-0.0001,+0.0195] rel=  +2.1% n= 59617  n.s.
+  base rate: treated=0.488  control=0.447
+
+[R7] AIPW (doubly robust, 5-fold cross-fitted GBM)
+  AIPW (cross-fitted GBM, doubly robust)         coef=-0.0227 CI[-0.0684,+0.0215] rel=  -1.9% n= 59617  n.s.
+
+[E-value]
+  V-A OLS (pre+covs+region/year/naics FE)        RR=0.9550  E-value=1.269
+  AIPW (cross-fitted GBM, doubly robust)         RR=0.9805  E-value=1.162
+
+==================================================================================
+SUMMARY
+==================================================================================
+check                                                   coef      rel  verdict
+V-A OLS (pre+covs+region/year/naics FE)              -0.0524    -4.5%  SIG
+raw DiD (no adjustment)                              -0.0079       -  
+V-A OLS, trimmed sample                              -0.0535    -4.9%  SIG
+raw DiD, trimmed                                     -0.0627       -  
+V-A OLS + state x year FE (demeaned)                 -0.1013    -8.7%  SIG
+PSM(1:1) then DiD                                    -0.2332       -  
+PSM-matched V-A OLS                                  -0.3269   -25.8%  SIG
+placebo: next_programmed -> post violations          +0.3044   +26.1%  SIG
+V-A OLS: total penalty $ at next inspection        -834.9749   -32.1%  SIG
+V-A OLS: all violations (count) at next inspection   -0.1004    -6.3%  SIG
+V-A OLS: P(any serious violation) [LPM]              +0.0100    +2.1%  n.s.
+AIPW (cross-fitted GBM, doubly robust)               -0.0227    -1.9%  n.s.
+
+saved -> data/real/robustness_results.json + .txt

@@ -1,0 +1,29 @@
+{
+  "_comment": "Example column mapping for data_loader.RealDataConfig when the source files use non-standard headers. For the Chinese second study (Paper 2), replace the keys with the actual column headers of the injury ledger and the inspection ledger.",
+  "injury_table": {
+    "企业代码": "ESTAB_ID",
+    "统一社会信用代码": "ESTAB_ID",
+    "统计年份": "YEAR",
+    "事故起数": "ACCIDENTS",
+    "死亡人数": "FATALITIES",
+    "从业人员数": "EMPLOYEES",
+    "行业代码": "NAICS",
+    "所在省份": "STATE",
+    "是否工会": "UNION"
+  },
+  "inspection_table": {
+    "企业代码": "ESTAB_ID",
+    "检查日期": "INSP_DATE",
+    "检查类型": "INSP_TYPE",
+    "检查方式": "INSP_TYPE",
+    "是否双随机": "INSP_TYPE"
+  },
+  "insp_type_values": {
+    "programmed": ["H", "I", "K", "计划检查", "双随机", "专项检查"],
+    "unprogrammed": ["B", "C", "A", "F", "M", "G", "J", "D", "L", "投诉举报", "事故调查", "复查"]
+  },
+  "notes": [
+    "For the OSHA data used in this paper no mapping is needed: build_real_dataset.py and build_within_firm.py read the registry columns directly.",
+    "This file matters only for the reusable adapter data_loader.RealDataConfig, i.e. for a different source such as the Chinese records described in data/README_data.md."
+  ]
+}
